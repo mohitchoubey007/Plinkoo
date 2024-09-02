@@ -1,6 +1,7 @@
-import * as express from "express";
-import * as cors from "cors";
+import express, { Request, Response } from "express";
+import cors from "cors";
 import { outcomes } from "./outcomes";
+
 const app = express();
 app.use(cors());
 
@@ -26,7 +27,7 @@ const MULTIPLIERS: { [key: number]: number } = {
   16: 16,
 };
 
-app.post("/game", (req, res) => {
+app.post("/game", (req: Request, res: Response) => {
   let outcome = 0;
   const pattern = [];
   for (let i = 0; i < TOTAL_DROPS; i++) {
