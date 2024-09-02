@@ -6,7 +6,7 @@
   
   "scripts": {
   "build": "tsc -p backend/tsconfig.json",
-  "start": "node backend/dist/index.js"
+  "start": "node dist/index.js"
 },
 
   "keywords": [],
