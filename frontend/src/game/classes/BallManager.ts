@@ -2,7 +2,6 @@ import { HEIGHT, WIDTH, ballRadius, obstacleRadius, sinkWidth } from "../constan
 import { Obstacle, Sink, createObstacles, createSinks } from "../objects";
 import { pad, unpad } from "../padding";
 import { Ball } from "./Ball";
-
 export class BallManager {
     private balls: Ball[];
     private canvasRef: HTMLCanvasElement;
