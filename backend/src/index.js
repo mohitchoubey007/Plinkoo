@@ -25,6 +25,9 @@ var MULTIPLIERS = {
     15: 9,
     16: 16,
 };
+app.get('/', function (req, res) {
+    res.json("server is runninng fine");
+});
 app.post("/game", function (req, res) {
     var outcome = 0;
     var pattern = [];

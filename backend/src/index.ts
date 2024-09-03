@@ -25,6 +25,9 @@ const MULTIPLIERS: { [key: number]: number } = {
   15: 9,
   16: 16,
 };
+app.get('/',(req,res)=>{
+  res.json("server is runninng fine")
+})
 
 app.post("/game", (req, res) => {
   let outcome = 0;
