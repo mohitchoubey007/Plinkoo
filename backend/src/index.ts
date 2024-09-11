@@ -1,6 +1,7 @@
-import * as express from "express";
-import * as cors from "cors";
-import { outcomes } from "./outcomes";
+import express, { Request, Response } from 'express'; // Use default imports
+import cors from 'cors';
+import { outcomes } from './outcomes';
+
 const app = express();
 app.use(cors());
 
@@ -25,13 +26,14 @@ const MULTIPLIERS: { [key: number]: number } = {
   15: 9,
   16: 16,
 };
-app.get('/',(req,res)=>{
-  res.json("server is runninng fine")
-})
 
-app.post("/game", (req, res) => {
+app.get('/', (req: Request, res: Response) => {
+  res.json("Server is running fine");
+});
+
+app.post("/game", (req: Request, res: Response) => {
   let outcome = 0;
-  const pattern = [];
+  const pattern: string[] = [];
   for (let i = 0; i < TOTAL_DROPS; i++) {
     if (Math.random() > 0.5) {
       pattern.push("R");
@@ -42,10 +44,10 @@ app.post("/game", (req, res) => {
   }
 
   const multiplier = MULTIPLIERS[outcome];
-  const possiblieOutcomes = outcomes[outcome];
+  const possibleOutcomes = outcomes[outcome] || []; // Safeguard against undefined outcome
 
-  res.send({
-    point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
+  res.json({
+    point: possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)],
     multiplier,
     pattern,
   });

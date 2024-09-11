@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const outcomes_1 = require("./outcomes");
+const express_1 = __importDefault(require("express")); // Use default imports
 const cors_1 = __importDefault(require("cors"));
+const outcomes_1 = require("./outcomes");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 const TOTAL_DROPS = 16;
@@ -26,8 +26,11 @@ const MULTIPLIERS = {
     13: 1.4,
     14: 2,
     15: 9,
-    16: 16
+    16: 16,
 };
+app.get('/', (req, res) => {
+    res.json("Server is running fine");
+});
 app.post("/game", (req, res) => {
     let outcome = 0;
     const pattern = [];
@@ -41,11 +44,11 @@ app.post("/game", (req, res) => {
         }
     }
     const multiplier = MULTIPLIERS[outcome];
-    const possiblieOutcomes = outcomes_1.outcomes[outcome];
-    res.send({
-        point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
+    const possibleOutcomes = outcomes_1.outcomes[outcome] || []; // Safeguard against undefined outcome
+    res.json({
+        point: possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)],
         multiplier,
-        pattern
+        pattern,
     });
 });
 app.listen(3000, () => {

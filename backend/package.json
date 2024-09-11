@@ -5,7 +5,7 @@
   "main": "index.js",
   
   "scripts": {
-  "build": "tsc -p backend/tsconfig.json",
+  "build": "tsc -p tsconfig.json",
   "start": "node dist/index.js"
 },
 

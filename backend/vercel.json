@@ -11,5 +11,7 @@
       "src": "/",
       "dest": "backend/dist/index.js"
     }
-  ]
+  ],
+  "installCommand": "npm install",
+  "buildCommand": "echo 'No build step required'"
 }
